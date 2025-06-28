@@ -25,9 +25,13 @@ def process_numbers(request):
                 'over_10_sorted': over_10_sorted
             }
 
-            client = MongoClient("mongodb://172.31.82.24:27017/")
-            db = client.assignment6
-            db.results.insert_one({'input': nums, 'result': result})
+            try:
+                client = MongoClient("mongodb://172.31.82.24:27017/")
+                db = client.assignment6
+                db.results.insert_one({'input': nums, 'result': result})
+                client.close()
+            except:
+                pass
 
     else:
         form = NumberForm()
