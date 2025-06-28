@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import NumberForm
-from pymongo import MongoClient
+from .models import CalculationResult
 
 def process_numbers(request):
     result = {}
@@ -25,13 +25,10 @@ def process_numbers(request):
                 'over_10_sorted': over_10_sorted
             }
 
-            try:
-                client = MongoClient("mongodb://172.31.82.24:27017/")
-                db = client.assignment6
-                db.results.insert_one({'input': nums, 'result': result})
-                client.close()
-            except:
-                pass
+            CalculationResult.objects.create(
+                input_numbers=nums,
+                result_data=result
+            )
 
     else:
         form = NumberForm()
