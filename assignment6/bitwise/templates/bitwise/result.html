@@ -1,0 +1,15 @@
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
+
+{% if result %}
+  <h3>Results</h3>
+  <p>Input Values: {{ result.original }}</p>
+  <p>Average: {{ result.average }}</p>
+  <p>Is the average greater than 50?: {{ result.is_above_50 }}</p>
+  <p>Number of Positive Values: {{ result.positive_count }}</p>
+  <p>Even or Odd: {{ result.even_odd }}</p>
+  <p>Values Greater Than 10 (Sorted): {{ result.over_10_sorted }}</p>
+{% endif %}
