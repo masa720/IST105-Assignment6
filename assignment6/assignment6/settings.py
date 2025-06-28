@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'cctbdb',
         'CLIENT': {
             'host': '172.31.82.24',
-            'port': 27017
+            'port': 27017,
         }
     }
 }
